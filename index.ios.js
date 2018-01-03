@@ -33,21 +33,60 @@ const estilos = {
   painelAcoes: {
     justifyContent: 'space-between',
     flexDirection: 'row'
+  },
+  palco: {
+    alignItems: 'center',
+    marginTop: 10
+  },
+  txtResultado: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: 'red',
+    height: 60
+  },
+  viewPlaco: {
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  txtJogador: {
+    fontSize: 18
   }
 }
 
-// class Container extends Component{
-//   render(){
-//     return(
+class Icone extends Component{
+  render(){
 
-//       )
-//     }
-//   }
+    if (this.props.escolha == 'pedra') {
+      return(
+        <View style={ estilos.viewPlaco }>
+          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
+          <Image source={ require('./img/pedra.png') } />
+        </View>
+      )
+    }else if(this.props.escolha == 'papel'){
+      return(
+        <View style={ estilos.viewPlaco }>
+          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
+          <Image source={ require('./img/papel.png') } />
+        </View>
+      )
+    } else if(this.props.escolha == 'tesoura'){
+      return(
+        <View style={ estilos.viewPlaco }>
+          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
+          <Image source={ require('./img/tesoura.png') } />
+        </View>
+      )
+    }else{
+      return false
+    }
+  }
+}
 
 class Topo extends Component{
   render(){
     return(
-      <View> 
+      <View>
       <Image source={ require('./img/jokenpo.png') } />
       </View>
       )
@@ -88,7 +127,7 @@ class Topo extends Component{
         }
 
         if(escolhaUsuario == 'papel'){
-          result = 'Usuario ganhou'
+          resultado = 'Você ganhou'
         }else{
           resultado = 'Computador ganhou'
         }
@@ -100,7 +139,7 @@ class Topo extends Component{
         }
 
         if(escolhaUsuario == 'tesoura'){
-          result = 'Usuario ganhou'
+          resultado = 'Você ganhou'
         }else{
           resultado = 'Computador ganhou'
         }
@@ -112,14 +151,14 @@ class Topo extends Component{
         }
 
         if(escolhaUsuario == 'pedra'){
-          result = 'Usuario ganhou'
+          resultado = 'Você ganhou'
         }else{
           resultado = 'Computador ganhou'
         }
       }
 
-      this.setState({   escolhaUsuario: escolhaUsuario, 
-        escolhaComputador: escolhaComputador, 
+      this.setState({   escolhaUsuario: escolhaUsuario,
+        escolhaComputador: escolhaComputador,
                     resultado: resultado}) //atribui o valor do parametro pra variavel
     }
 
@@ -140,12 +179,13 @@ class Topo extends Component{
             <Button title="tesoura" onPress={ () => { this.jokenpo('tesoura') }} />
           </View>
         </View>
-        <View></View>
-        <Text>Escolha do computador: { this.state.escolhaComputador }</Text>
-        <Text style={ estilos.escolhaDoUsuario}>Escolha do usuario: { this.state.escolhaUsuario }</Text>
-        <Text>Resultado: { this.state.resultado }</Text>
-
-        
+        <View style={ estilos.palco }>
+          <Text style={ estilos.txtResultado }>{ this.state.resultado } </Text>
+          
+          <Icone escolha={ this.state.escolhaComputador } jogador={ 'Computador' }></Icone>
+          <Icone escolha={ this.state.escolhaUsuario } jogador={ 'Voce' }></Icone>
+          
+        </View>
         </View>
         )
       }
