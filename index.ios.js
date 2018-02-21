@@ -14,6 +14,8 @@
   Image
 } from 'react-native';
 
+import Topo from './src/components/Topo'
+import Icone from './src/components/Icone'
 const estilos = {
   view: {
     backgroundColor: '#fff',
@@ -43,55 +45,9 @@ const estilos = {
     fontWeight: 'bold',
     color: 'red',
     height: 60
-  },
-  viewPlaco: {
-    alignItems: 'center',
-    marginBottom: 20,
-  },
-  txtJogador: {
-    fontSize: 18
   }
 }
 
-class Icone extends Component{
-  render(){
-
-    if (this.props.escolha == 'pedra') {
-      return(
-        <View style={ estilos.viewPlaco }>
-          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
-          <Image source={ require('./img/pedra.png') } />
-        </View>
-      )
-    }else if(this.props.escolha == 'papel'){
-      return(
-        <View style={ estilos.viewPlaco }>
-          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
-          <Image source={ require('./img/papel.png') } />
-        </View>
-      )
-    } else if(this.props.escolha == 'tesoura'){
-      return(
-        <View style={ estilos.viewPlaco }>
-          <Text style={ estilos.txtJogador }> { this.props.jogador} </Text>
-          <Image source={ require('./img/tesoura.png') } />
-        </View>
-      )
-    }else{
-      return false
-    }
-  }
-}
-
-class Topo extends Component{
-  render(){
-    return(
-      <View>
-      <Image source={ require('./img/jokenpo.png') } />
-      </View>
-      )
-    }
-  }
 
   class app3 extends Component{
     constructor(props) {
